@@ -28,7 +28,9 @@ public class AtmUi extends JFrame {
     private JButton loginBtn;
     private JButton registerCreateBtn;
 
+
     // Login fields
+    private JTextField TotUser;
     private JTextField loginUser;
     private JPasswordField loginPass;
     private JLabel loginMsg;
@@ -64,8 +66,11 @@ public class AtmUi extends JFrame {
 
         root.setBorder(new EmptyBorder(16, 16, 16, 16));
         root.add(buildLoginCard(), "login");
+
+        root.add(buildRegisterCard(), "Tooot");
         root.add(buildRegisterCard(), "register");
         root.add(buildDashboardCard(), "dashboard");
+        root.add(buildRegisterCard(), "mohamed");
 
         setContentPane(root);
         showLogin();
@@ -76,6 +81,7 @@ public class AtmUi extends JFrame {
         session = null;
         loginMsg.setText(" ");
         loginUser.setText("");
+        TotUser.setText("");
         loginPass.setText("");
         cards.show(root, "login");
         getRootPane().setDefaultButton(loginBtn);
@@ -125,6 +131,7 @@ public class AtmUi extends JFrame {
 
         JPanel form = new JPanel(new GridBagLayout());
         form.setBorder(BorderFactory.createTitledBorder("Login"));
+        form.setFont(form.getFont().deriveFont(Font.BOLD, 26f));
         GridBagConstraints g = new GridBagConstraints();
         g.insets = new Insets(8, 8, 8, 8);
         g.anchor = GridBagConstraints.WEST;
@@ -134,6 +141,7 @@ public class AtmUi extends JFrame {
         g.gridx = 0;
         g.gridy = 0;
         form.add(new JLabel("Username"), g);
+        form.setFont(form.getFont().deriveFont(Font.BOLD, 26f));
         g.gridy = 1;
         loginUser = new JTextField(18);
         form.add(loginUser, g);
@@ -143,6 +151,17 @@ public class AtmUi extends JFrame {
         g.gridy = 3;
         loginPass = new JPasswordField(18);
         form.add(loginPass, g);
+
+
+        g.gridx = 0;
+        g.gridy = 4;
+        form.setFont(form.getFont().deriveFont(Font.BOLD, 26f));
+        form.add(new JLabel("Tooot"), g);
+
+        g.gridy = 6;
+        TotUser = new JTextField(12);
+        form.add(TotUser, g);
+
 
         g.gridy = 4;
         g.gridwidth = 2;
@@ -154,10 +173,15 @@ public class AtmUi extends JFrame {
 
         JPanel south = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
         JButton registerBtn = new JButton("Register");
+
+
         loginBtn = new JButton("Login");
+
         south.add(registerBtn);
         south.add(loginBtn);
+        JButton testBtn = new JButton("Test");
         p.add(south, BorderLayout.SOUTH);
+        south.add(testBtn);
 
         // Enter in username/password fires the same action as clicking Login.
         Runnable doLogin = this::onLogin;
